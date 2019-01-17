@@ -1,5 +1,5 @@
 # stream_demo
-[Flutter响应式编程 - Stream](https://www.jianshu.com/writer#/notebooks/12227197/notes/40100423)示例代码
+[Flutter响应式编程 - Stream](https://www.jianshu.com/p/675f797f8280)示例代码
 
 ## Getting Started
 
