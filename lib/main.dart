@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'blocs/bloc_provider.dart';
 import 'blocs/counter_bloc.dart';
 
 void main() => runApp(MyApp());
@@ -12,7 +13,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: BlocProvider(
+          child: MyHomePage(title: 'Flutter Demo Home Page'),
+          blocs: [CounterBloc()]),
     );
   }
 }
@@ -23,23 +26,19 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState(CounterBloc());
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  final CounterBloc bloc;
-
-  _MyHomePageState(this.bloc);
-
   void _incrementCounter() {
-    bloc.increment(_counter);
+    BlocProvider.of<CounterBloc>(context).first.increment(_counter);
   }
 
   @override
   void initState() {
-    bloc.counter.listen((_count) {
+    BlocProvider.of<CounterBloc>(context).first.counter.listen((_count) {
       setState(() {
         _counter = _count;
       });
